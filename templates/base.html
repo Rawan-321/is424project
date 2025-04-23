@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <title>recipe page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% include 'snippets/header.html' %}
+
+
+</head>
+<!-- you can add the navigation menu and the footer in hear,
+ so it can be reused in all pages-->
+<body>
+    <!-- body -->
+    <style type="text/css">
+        .main{
+            min-height: 100vh;
+            height: 100%;
+            padding-bottom: 40px;
+        }
+        .img-fluid{
+        max-width: 100%;
+        height: auto;
+        width: 100% \9;
+        padding-top: 20px;
+        padding-right: 100px;
+        padding-left: 100px;
+        padding-bottom: 50px;
+        }
+        .material-symbols-outlined {
+        font-size: 30px;
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+        }
+
+        .no-gutters {
+        margin-right: 0;
+        margin-left: 0;
+        > .col,
+        > [class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+            }
+        }
+        .form-control {
+        max-width: 640px;
+        height: 150px;
+        border-width: 1px;
+        border-color: #FF7F50;
+        }
+        .btn{
+        background-color: #FF7F50;
+        border-color: #FF7F50;
+        }
+        .footer{
+        padding-top: 30px;
+        background-color: #FFFAFA;
+        height: 230px;
+        }
+        .tasty{
+        font-size: 30px;
+        }
+        .header{
+        background-color: #FFFAFA;
+        height: 50px;
+        }
+
+
+    </style>
+
+    <div class="main">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
+    <!-- body -->
+
+    {% include 'snippets/footer.html' %}
+</body>
+
+</html>
