@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
     {% block content %}
 <!-- text-body-emphasis d-flex align-items-center justify-content-center h-100 -->
+ 
     <div class="container text-center">
         <div class="p-4 p-md-3 mb-4 rounded text-body-emphasis d-flex align-items-center justify-content-center h-100">
             <div class="col-lg-9 px-0">
@@ -15,7 +16,7 @@
                     <span class="material-symbols-outlined" style="padding-left: 10px;">person</span>
                 </div>
                 <div class="col-md-auto">
-                    <p class="fs-6 font-weight-normal" style="padding-left: 10px;">created by : {{recipe.created_by }}</p>
+                    <p class="fs-6 font-weight-normal" style="padding-left: 10px;">created by : {{recipe.user }}</p>
                 </div>
                 <div class="col-md-auto">
                     <span class="material-symbols-outlined" style="padding-left: 20px;">calendar_today</span>
@@ -28,11 +29,14 @@
         </div>
 
         <div class="container">
-            <hr style="">
             <p class="fs-6 ms-4 mr-md-auto font-weight-normal">{{recipe.recipe_description }}</p>
         </div>
         <div class="container text-center">
-            <img src="{{recipe.recipe_image.url}}" alt="My image" class="rounded img-fluid">
+            {% if recipe.recipe_image %}
+            <img class="rounded img-fluid" src="{{ recipe.recipe_image.url }}" alt="Card image cap">
+            {% else %}
+                <img class="rounded img-fluid" src="/media/images/default-featured-image.png.jpg" alt="Default image">
+            {% endif %} 
         </div>
         <div class="container">
             <div class="row">
@@ -78,13 +82,13 @@
             {% for i in reviews %}
                 <div class="card border-light  mb-3" style="max-width: 40rem; background-color: #FFFAFA;">
                     <div class="card-body">
-                        <h5 class="card-title">Name of the reviewer</h5>
+                        <h5 class="card-title">{{recipe.user}}</h5>
                         <p class="card-subtitle mb-2 text-muted" style="font-size: 12px;">{{i.created_at}}</p>
                         <p class="card-text" style="padding-top: 10px; padding-left: 20px;">{{i.content}}</p>
                     </div>
                 </div>
             {% endfor %}
-        <form action="{% url 'addReview' %}" method="post" >
+        <form action="{% url 'addReview' %}" method="post" class="review">
             {% csrf_token %}
 {% if messages %}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -108,7 +112,7 @@
         </form>
 
 
-    </div>
+    </div> 
 
 
 

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block title %}home page{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container marketing text-center ">
+  <div class="card" style="padding : auto;">
+    <div class="card-body">
+      <h1 class="card-title "style="font-family:'sans-serif';">Welcome to Tasty</h1>
+      <h5 class="card-text" style="font-family:'sans-serif'; padding-top: 15px;">Explore many delicious and creative recipes-just one click away</h5>
+    </div>
+    <img class="card-img-bottom img-fluid" src="/media/images/Simply-Recipes-Strawberry-Cake-LEAD-9-02d65bfdfd564146804192f8f6ceebb8 (1).jpg" alt="Card image cap">
+  </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for recipe in recipes %}
+        <div class="col-md-auto" style="padding: 10px;" >
+            <div class="card" style="width: 18rem;">
+                {% if recipe.recipe_image %}
+                    <img class="card-img-top rounded " src="{{ recipe.recipe_image.url }}" alt="Card image cap">
+                {% else %}
+                    <img class="card-img-top rounded" src="/media/images/default-featured-image.png.jpg" alt="Default image">
+                {% endif %}   
+                <div class="card-body">
+                  <p class="card-text">{{recipe.recipe_name}}</p>
+                  <a href="{% url 'recipe_view' recipe.id %}" class="btn btn-primary">Go to recipe</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

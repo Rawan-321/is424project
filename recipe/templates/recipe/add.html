@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+
+{% block title %}Add Recipe{% endblock %}
+
+
+
+{% block content %}
+<div class="container text-center">
+    <h1 class="display-6 fst-normal fw-bold align-self-center text_font add_recipe">Add Recipe</h1>
+    <form method="post" action="{% url 'createRecipe' %}" enctype="multipart/form-data" class="form-group">
+		{% csrf_token %}
+		{% if messages %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    {% for message in messages %}
+            Swal.fire({
+                title: 'success',
+                text: '{{message}}',
+                timer: 2000,
+                icon: 'success',
+                showCancelButton: false,
+                showConfirmButton: false
+            });
+    {% endfor %}
+</script>
+{% endif %}
+		<div class="mb-3">
+			<label for="recipe_name" class="form-label text_font text_size">Recipe Name</label>
+			{{ form.recipe_name }}
+		</div>
+		<div class="mb-3">
+			<label for="recipe_description" class="form-label text_font text_size">Recipe Description</label>
+			{{ form.description }}
+		</div>
+		<div class="mb-3">
+			<label for="recipe_image" class="form-label text_font text_size">Recipe Image</label>
+			{{ form.image }}
+		</div>
+		<div class="mb-3">
+			<label for="cooking_time" class="form-label text_font text_size">Cooking Time</label>
+			{{ form.cooking_time }}
+		</div>
+		<div class="mb-3">
+			
+			<label for="ingredients" class="form-label text_font text_size">Ingredients</label>
+			<p class="description">please seperate each Ingredients with a comma</p>
+			{{ form.ingredients }}
+		</div>	
+		<div class="mb-3">
+
+			<label for="instructions" class="form-label text_font text_size">Instructions</label>
+			<p class="description">please write each instruction in a new line</p>
+			{{ form.instructions }}
+		</div>
+		<div class="mb-3">
+	  		<button name="save" type="submit" class="btn btn-success text_size">Create</button>
+	  		
+	  		
+		</div>
+	</form>
+</div>
+
+{% endblock %}
